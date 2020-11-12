@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tugas Market v.1</title>
+  </head>
+  <body></body>
+  <script>
+    let harga_apple = 10000;
+    let harga_orange = 20000;
+    let harga_grape = 30000;
+    // harga input
+
+    let stockApple = 20;
+    let stockOrange = 10;
+    let stockGrape = 15;
+    // define stock tentukan stok
+
+    // Apple
+    // Loop
+    while (true) {
+      let sisaApple = stockApple;
+      let sisaOrange = stockOrange;
+      let sisaGrape = stockGrape;
+
+      alert(`
+        Selamat datang di toko kami 🤞
+
+        Ketersediaan barang hari ini :
+
+        1. Apple dengan harga Rp. ${harga_apple.toLocaleString()} / Kg, Tersedia ${sisaApple} buah
+        2. Orange dengan harga Rp. ${harga_orange.toLocaleString()} / Kg, Tersedia ${sisaOrange} buah
+        3. Grape dengan harga Rp. ${harga_grape.toLocaleString()} / Kg, Tersedia ${sisaGrape} buah
+
+        Silahkan berbelanja
+        `);
+      let apple = 0;
+      while (true) {
+        apple = parseInt(prompt("Masukan Apple 🍎 yang ingin di beli !"));
+        if (apple > stockApple) {
+          alert(`Maaf sisa apple kami = ${stockApple}`);
+        } else if (isNaN(apple) || apple < 0) {
+          alert("Wrong number");
+        } else {
+          break;
+        }
+      }
+
+      // Orange
+      // loop
+      let orange = 0;
+      while (true) {
+        orange = parseInt(prompt("Masukan Orange 🍊 yang ingin di beli !"));
+        if (orange > stockOrange) {
+          alert(`Maaf sisa orange kami = ${stockOrange}`);
+        } else if (isNaN(orange) || orange < 0) {
+          alert("Wrong number");
+        } else {
+          break;
+        }
+      }
+
+      // Grape
+      // Loop
+      let grape = 0;
+      while (true) {
+        grape = parseInt(prompt("Masukan Grape 🍇 yang ini di beli !"));
+        if (grape > stockGrape) {
+          alert(`Maaf sisa grape kami = ${stockGrape}`);
+        } else if (isNaN(grape) || grape < 0) {
+          alert("Wrong number");
+        } else {
+          break;
+        }
+      }
+
+      // user tidak input kosong = null
+      // kalau input > stok : alert melebihin stok, input = 0 total
+      // console.log(typeof apple)
+      // console.log(typeof orange)
+      // console.log(typeof grape)
+
+      let hargaApple = harga_apple * apple;
+      let hargaOrange = harga_orange * orange;
+      let hargaGrape = harga_grape * grape;
+      let totalHarga = hargaApple + hargaOrange + hargaGrape;
+
+      alert(`
+    Harga detail Belanja !!
+
+
+    Harga total Apple 🍎 ${apple} x ${harga_apple} = ${hargaApple}
+    Harga total Orange 🍊 ${orange} x ${harga_orange} = ${hargaOrange}
+    Harga total Grape 🍇 ${grape} x ${harga_grape}= ${hargaGrape}
+    
+    Total Harga = Rp. ${totalHarga.toLocaleString()}
+    `);
+
+      // Pembayaran
+      let bayar;
+      while (true) {
+        bayar = parseInt(prompt(`Silahkan masukkan nominal pembayaran`));
+        if (bayar < totalHarga) {
+          alert(
+            `Maaf pembayaran anda kurang,
+             Total pembelian = Rp. ${totalHarga.toLocaleString()}
+             Pembayaran      = Rp. ${bayar}
+             Kurang bayar    = Rp. ${totalHarga - bayar}`
+          );
+        } else if (isNaN(bayar) || bayar < 0) {
+          alert("Salah input");
+        } else {
+          alert(`
+          Pembayaran anda   = Rp. ${bayar.toLocaleString()}
+          Kembalian         = Rp. ${bayar - totalHarga}
+
+          Terima kasih!`);
+          break;
+        }
+      }
+
+      // pengurangan apple
+
+      let selisihApple = sisaApple - apple;
+      stockApple = selisihApple;
+      let selisihOrange = sisaOrange - orange;
+      stockOrange = selisihOrange;
+      let selisihGrape = sisaGrape - grape;
+      stockGrape = selisihGrape;
+
+      //Konfirmasi
+
+      let confirmation = confirm("Apakah masih ingin belanja ?");
+
+      if (confirmation == false) {
+        alert("Terima kasih sudah berkunjung 🙏");
+        break;
+      }
+    }
+  </script>
+</html>

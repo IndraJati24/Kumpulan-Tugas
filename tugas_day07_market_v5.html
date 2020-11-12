@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tugas Market v.1</title>
+  </head>
+  <body></body>
+  <script>
+    let product = ["Apple 🍎", "Orange 🍊", "Grape 🍇"];
+    let harga = [10000, 20000, 30000];
+    let stock = [30, 30, 30];
+    // harga input
+    // define stock tentukan stok
+
+    while (true) {
+      let sisa = stock;
+
+      function showMenu() {
+        let menu = "Selamat datang di toko KAMI \n";
+
+        for (let i = 0; i < product.length; i++) {
+          menu += `${i + 1}. ${product[i]} Rp. ${harga[i]},00 /kg tersedia ${
+            sisa[i]
+          } buah \n`;
+        }
+        alert(menu);
+      }
+
+      showMenu();
+
+      function input() {
+        let num = [];
+        for (let i = 0; i < product.length; i++) {
+          while (true) {
+            let buah = parseInt(
+              prompt(`Masukkan ${product[i]} yang ingin di beli`)
+            );
+            if (buah > stock[i]) {
+              alert("Jumlah anda melebihi stock yang tersedia");
+            } else if (isNaN(buah)) {
+              alert("Salah input");
+            } else {
+              num.push(buah);
+              break;
+            }
+          }
+        }
+        return num;
+      }
+
+      let qty = input();
+
+     
+      function HargaBeli() {
+        let beli = [];
+        for (let i = 0; i < product.length; i++) {
+          beli.push(harga[i] * qty[i]);
+        }
+        return beli;
+      }
+      let hargaBeli = HargaBeli();
+
+      let totalHarga = hargaBeli.reduce((a, b) => a + b);
+
+      function showDetail() {
+        let detail = "Detail pembelian barang anda \n";
+        for (let i = 0; i < product.length; i++) {
+          detail += `${i + 1}. Harga total ${product[i]} ${qty[i]} x ${
+            harga[i]
+          } = ${hargaBeli[i]} \n`;
+        }
+        alert(
+          detail +
+            `Harga total pembelian = Rp. ${totalHarga.toLocaleString()},00`
+        );
+      }
+      showDetail();
+
+      // Pembayaran
+      let bayar;
+      while (true) {
+        bayar = parseInt(prompt(`Silahkan masukkan nominal pembayaran`));
+        if (bayar < totalHarga) {
+          alert(
+            `Maaf pembayaran anda kurang,
+             Total pembelian = Rp. ${totalHarga.toLocaleString()}
+             Pembayaran      = Rp. ${bayar}
+             Kurang bayar    = Rp. ${totalHarga - bayar}`
+          );
+        } else if (isNaN(bayar) || bayar < 0) {
+          alert("Salah input");
+        } else {
+          alert(`
+          Pembayaran anda   = Rp. ${bayar.toLocaleString()}
+          Kembalian         = Rp. ${bayar - totalHarga}
+
+          Terima kasih!`);
+          break;
+        }
+      }
+
+      // pengurangan apple
+      function selisih() {
+        let kurang = [];
+        for (let i = 0; i < product.length; i++) {
+          kurang.push(sisa[0] - qty[0]);
+        }
+
+        return kurang;
+      }
+      let kurang = selisih();
+      for (let i = 0; i < kurang.length; i++) {
+        stock[i] = kurang[i];
+      }
+
+      //Konfirmasi
+
+      let confirmation = confirm("Apakah masih ingin belanja ?");
+
+      if (confirmation == false) {
+        alert("Terima kasih sudah berkunjung 🙏");
+        break;
+      }
+    }
+  </script>
+</html>

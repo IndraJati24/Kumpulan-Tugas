@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Konversi Mata Uang</title>
+  </head>
+  <body>
+    <h1>Kalkulator Konversi Mata Uang Sederhana</h1>
+    <label for="uang">Masukkan angka :</label>
+    <input type="number" name="uang" id="number" />
+    <br /><br />
+    <form id="konversi" name="uang">
+      <label for="uang_asal">Mata uang asal</label>
+      <select name="mata_uang" id="asal">
+        <option name="pilih" value="IDR" id="idr">Rupiah</option>
+        <option name="pilih" value="USD">USD</option>
+        <option name="pilih" value="WON">WON</option>
+      </select>
+    </form>
+    <form>
+      <label for="uang_akhir">Mata uang konversi</label>
+      <select name="mata_uang" id="asal">
+        <option name="pilih" value="IDR">Rupiah</option>
+        <option name="pilih" value="USD">USD</option>
+        <option name="pilih" value="WON">WON</option>
+      </select>
+    </form>
+    <button onclick="ProsesData()">Proses</button>
+    <br />
+    <div id="output"></div>
+  </body>
+  <script>
+    let input = document.getElementById("number");
+    console.log(input);
+
+    let form = document.forms;
+    console.log(form);
+
+    let div = document.getElementById("output");
+
+    let rate =[0.00007149, 13, 14000, 1200, 0.076923, 0.000833]
+    let idrUsd = rate[0]
+    let idrWon = rate[1]
+    let usdIdr = rate[2]
+    let usdWon = rate[3]
+    let wonIdr = rate[4]
+    let wonUsd = rate[5]
+
+    //let mata_uang = ["IDR", "USD", "WON"];
+   // let num = [14000, 13, 1000];
+
+    let select1 = form[0].mata_uang.value;
+    console.log(select1);
+    let select2 = form[1].mata_uang.value;
+    console.log(select2);
+
+    // function ProsesData() {
+    //   if ((select1 == "IDR")) {
+    //     Idr();
+    //   } else if(select1 == "USD"){
+    //     Usd()
+    //   } else if(select1 == "WON") {
+    //     Won()
+    //   }
+    // }
+
+    
+
+    // function Idr() {
+      
+    //   let idrUsd = input.value / num[0];
+    //   let idrWon = input.value * num[1];
+    //   console.log(idrUsd)
+    //   console.log(idrWon)
+      
+    //   let hasil;
+    //   if (select1 == select2) {
+    //     hasil = input.value;
+    //   } else if (select1 == "IDR" && select2 == "USD") {
+    //     hasil = idrUsd;
+    //   } else if (select1 == "IDR" && select2 == "WON") {
+    //     hasil = idrWon;
+    //   }
+    //   div.innerHTML = `<h2>${input.value} ${select1} = ${hasil} ${select2}</h2>`;
+    //   input.value = "";
+    // }
+
+    // function Usd() {
+      
+    //   let usdIdr = input.value * num[0];
+    //   let usdWon = input.value * num[2];
+    //   console.log(usdIdr)
+    //   console.log(usdWon)
+      
+    //   let hasil;
+    //   if (select1 == select2) {
+    //     hasil = input.value;
+    //   } else if (select1 == "USD" && select2 == "IDR") {
+    //     hasil = usdIdr;
+    //   } else if (select1 == "USD" && select2 == "WON") {
+    //     hasil = usdWon;
+        
+    //   }
+    //   div.innerHTML = `<h2>${input.value} ${select1} = ${hasil} ${select2}</h2>`;
+    //   input.value = "";
+    // }
+
+    // function Won() {
+      
+    //   let wonIdr = input.value * num[1];
+    //   let wonUsd = input.value / num[2];
+    //   console.log(wonIdr)
+    //   console.log(wonUsd)
+      
+    //   let hasil;
+    //   if (select1 == select2) {
+    //     hasil = input.value;
+    //   } else if (select1 == "WON" && select2 == "IDR") {
+    //     hasil = wonIdr;
+    //   } else if (select1 == "WON" && select2 == "USD") {
+    //     hasil = wonUsd;
+        
+    //   }
+    //   div.innerHTML = `<h2>${input.value} ${select1} = ${hasil} ${select2}</h2>`;
+    //   input.value = "";
+    // }
+    let hasil 
+    function ProsesData() {
+      if(select1 == select2){
+        hasil = input.value
+      } else if(select1 == "IDR" && select2 == "USD"){
+        hasil = input.value * rate[0]
+      } else if(select1 == "IDR" && select2 == "WON"){
+        hasil = input.value * rate[1]
+      } else if(select1 == "USD" && select2 == "IDR"){
+        hasil = input.value * rate[2]
+      } else if(select1 == "USD" && select2 == "WON"){
+        hasil = input.value * rate[3]
+      } else if(select1 == "WON" && select2 == "IDR"){
+        hasil = input.value * rate[4]
+      } else if(select1 == "WON" && select2 == "USD"){
+        hasil = input.value * rate[5]
+      }
+      div.innerHTML = `<h2>${input.value} ${select1} = ${hasil} ${select2}</h2>`;
+    }
+  </script>
+</html>

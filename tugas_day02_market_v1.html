@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Market v.1</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let apple = parseInt(prompt('Masukan Apple 🍎 yang ingin di beli ! '))
+    let orange = parseInt(prompt('Masukan Orange 🍊 yang ingin di beli ! '))
+    let grape = parseInt(prompt('Masukan Grape 🍇 yang ini di beli !'))
+    console.log(typeof apple)
+    console.log(typeof orange)
+    console.log(typeof grape)
+    
+    let harga_apple = 10000
+    let harga_orange = 20000
+    let harga_grape = 30000
+    let hargaApple = harga_apple * apple
+    let hargaOrange = harga_orange * orange
+    let hargaGrape = harga_grape * grape
+    alert(`
+    Harga detail Belanja !!
+
+
+    Harga total Apple 🍎 ${apple} x ${harga_apple} = ${hargaApple}
+    Harga total Orange 🍊 ${orange} x ${harga_orange} = ${hargaOrange}
+    Harga total Grape 🍇 ${grape} x ${harga_grape}= ${hargaGrape}
+    Total Harga = ${hargaApple + hargaOrange + hargaGrape}
+    `)
+
+    
+
+</script>
+</html>

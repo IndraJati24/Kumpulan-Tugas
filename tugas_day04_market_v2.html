@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Market v.1</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    let harga_apple = 10000
+    let harga_orange = 20000
+    let harga_grape = 30000
+    // harga input
+
+    let stockApple = 20
+    let stockOrange = 10
+    let stockGrape = 15
+    // define stock tentukan stok
+
+    // Apple
+    let apple = parseInt(prompt('Masukan Apple 🍎 yang ingin di beli !'))
+    
+    if(apple > stockApple) {
+        apple = 0
+        alert(`Maaf sisa apple kami = ${stockApple}`)
+    } else if (isNaN(apple) || apple <0) {
+        apple =0 
+    } else {
+        apple
+    }
+    
+    // Orange
+    let orange = parseInt(prompt('Masukan Orange 🍊 yang ingin di beli !'))
+
+    if(orange > stockOrange) {
+        orange = 0
+        alert(`Maaf sisa orange kami = ${stockOrange}`)
+    } else if (isNaN(orange) || orange <0) {
+        orange =0 
+    } else {
+        orange
+    }
+
+    // Grape
+    let grape = parseInt(prompt('Masukan Grape 🍇 yang ini di beli !'))
+
+    if(grape > stockGrape) {
+        grape = 0
+        alert(`Maaf sisa grape kami = ${stockGrape}`)
+    } else if (isNaN(grape) || grape <0) {
+        grape =0 
+    } else {
+        grape
+    }
+
+
+    // user tidak input kosong = null
+    // kalau input > stok : alert melebihin stok, input = 0 total 
+    // console.log(typeof apple)
+    // console.log(typeof orange)
+    // console.log(typeof grape)
+    
+
+    let hargaApple = harga_apple * apple
+    let hargaOrange = harga_orange * orange
+    let hargaGrape = harga_grape * grape
+    let totalHarga = hargaApple + hargaOrange + hargaGrape
+
+    alert(`
+    Harga detail Belanja !!
+
+
+    Harga total Apple 🍎 ${apple} x ${harga_apple} = ${hargaApple}
+    Harga total Orange 🍊 ${orange} x ${harga_orange} = ${hargaOrange}
+    Harga total Grape 🍇 ${grape} x ${harga_grape}= ${hargaGrape}
+    Total Harga = ${totalHarga}
+    `)
+
+    
+
+</script>
+</html>

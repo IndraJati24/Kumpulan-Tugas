@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kuis</title>
+  </head>
+  <body>
+    <p><b>1. Siapakah Presiden ketiga Republik Indonesia?</b></p>
+    <input type="radio" name="presiden" value="25" checked /><i
+      ><b>Prof.B.J.Habibie</b></i
+    >
+    <input type="radio" name="presiden" value="0" />Abdurahman Wahid
+    <input type="radio" name="presiden" value="0" />Ir. Soekarno
+    <input type="radio" name="presiden" value="0" />Joko Widodo
+    <br />
+    <p><b>2. Berikut adalah nama-nama bahasa pemograman, kecuali ...</b></p>
+    <input type="radio" name="bahasa" value="0" checked />Phyton
+    <input type="radio" name="bahasa" value="25" checked /><i
+      ><b>Micro:bit</b></i
+    >
+    <input type="radio" name="bahasa" value="0" />JavaScript
+    <input type="radio" name="bahasa" value="0" />HTML
+    <br />
+    <p>
+      <b
+        >3. Apa Judul lagu yang diduga diplagiat oleh lagu 'Sayang' Via
+        Vallen?</b
+      >
+    </p>
+    <input type="radio" name="lagu" value="0" checked />Qing Fei De Yi
+    <input type="radio" name="lagu" value="0" />Ting Hai
+    <input type="radio" name="lagu" value="25" checked /><b
+      ><i>Mirai E Kiroro</i></b
+    >
+    <input type="radio" name="lagu" value="0" />Haung siang Hau siang
+    <br />
+    <p><b>4. Siapakah sosok di balik topeng Batman?</b></p>
+    <input type="radio" name="topeng" value="0" />Natasha Romanov
+    <input type="radio" name="topeng" value="0" />Peter Parker
+    <input type="radio" name="topeng" value="0" />Tony Stark
+    <input type="radio" name="topeng" value="25" checked /><b
+      ><i>Bruce Wayne</i></b
+    >
+    <br /><br />
+
+    <button>S U B M I T</button>
+    <div></div>
+  </body>
+  <script>
+    let input = document.body.getElementsByTagName("input");
+    console.log(input);
+    let button = document.body.getElementsByTagName("button");
+    console.log(button);
+    let div = document.body.getElementsByTagName("div");
+    console.log(div);
+
+    
+    button[0].addEventListener("click", () => {
+        let inputNo1 = [];
+        if (input[0].checked) {
+          inputNo1.push(input[0].value);
+        } else if (input[1].checked) {
+          inputNo1.push(input[1].value);
+        } else if (input[2].checked) {
+          inputNo1.push(input[2].value);
+        } else if (input[3].checked) {
+          inputNo1.push(input[3].value);
+        }
+        console.log(inputNo1);
+    
+        let inputNo2 = [];
+        if (input[4].checked) {
+          inputNo2 = input[4].value;
+        } else if (input[5].checked) {
+          inputNo2 = input[5].value;
+        } else if (input[6].checked) {
+          inputNo2 = input[6].value;
+        } else if (input[7].checked) {
+          inputNo2 = input[7].value;
+        }
+        console.log(inputNo2);
+    
+        let inputNo3 = [];
+        if (input[8].checked) {
+          inputNo3 = input[8].value;
+        } else if (input[9].checked) {
+          inputNo3 = input[9].value;
+        } else if (input[10].checked) {
+          inputNo3 = input[10].value;
+        } else if (input[11].checked) {
+          inputNo3 = input[11].value;
+        }
+        console.log(inputNo3);
+    
+        let inputNo4 = [];
+        if (input[12].checked) {
+          inputNo4 = input[12].value;
+        } else if (input[13].checked) {
+          inputNo4 = input[13].value;
+        } else if (input[14].checked) {
+          inputNo4 = input[14].value;
+        } else if (input[15].checked) {
+          inputNo4 = input[15].value;
+        }
+        console.log(inputNo4);
+
+        let nilai =
+        parseInt(`${inputNo1}`) +
+        parseInt(`${inputNo2}`) +
+        parseInt(`${inputNo3}`) +
+        parseInt(`${inputNo4}`);
+        div[0].innerHTML = `<h1>Nilai akhir anda ${nilai}</h1>`;
+        
+    });
+  </script>
+</html>

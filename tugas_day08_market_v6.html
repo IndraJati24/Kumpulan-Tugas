@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tugas Market v.1</title>
+  </head>
+  <body></body>
+  <script>
+    class Dagangan {
+      constructor(nama, harga, stock) {
+        (this.nama = nama), (this.harga = harga), (this.stock = stock);
+      }
+    }
+
+    let product = [
+      { nama: "Apel 🍎", harga: 10000, stock: 30 },
+      { nama: "Jeruk 🍊", harga: 20000, stock: 30 },
+      { nama: "Anggur 🍇", harga: 30000, stock: 30 },
+    ];
+
+    function nambahProduct() {
+      product.push(
+        new Dagangan(
+          prompt("Masukkan nama produk"),
+          prompt("Masukkan harga"),
+          prompt("Masukkan stock")
+        )
+      );
+    }
+
+
+    
+    let sisa = product;
+    function showProduct() {
+      let menu = "Selamat datang di toko KAMI 🏠 \n";
+      for (let i = 0; i < product.length; i++) {
+        menu += `${i + 1}. ${product[i].nama} Rp. ${
+          product[i].harga
+        },00 /kg tersedia ${sisa[i].stock} buah \n`;
+      }
+      alert(menu);
+    }
+
+    let qty = [];
+    function input() {
+      for (let i = 0; i < product.length; i++) {
+        while (true) {
+          qty[i] = parseInt(
+            prompt(`Masukkan ${product[i].nama} yang ingin di beli`)
+          );
+          if (qty[i] > product[i].stock) {
+            alert("Jumlah anda melebihi stock yang tersedia");
+          } else if (isNaN(qty[i])) {
+            alert("Salah input");
+          } else {
+            break;
+          }
+        }
+      }
+    }
+
+    function showDetail() {
+      //harga beli product
+      let totalBeli = HargaBeli();
+
+      let detail = "Detail pembelian barang anda \n";
+      for (let i = 0; i < product.length; i++) {
+        detail += `${i + 1}. Harga total ${product[i].nama} ${qty[i]} x ${
+          product[i].harga
+        } = ${totalBeli[i]} \n`;
+      }
+      alert(
+        detail +
+          `Harga total pembelian = Rp. ${totalBeli.reduce((a, b) => a + b)},00`
+      );
+    }
+
+    function HargaBeli() {
+      let beli = [];
+      for (let i = 0; i < product.length; i++) {
+        beli.push(product[i].harga * qty[i]);
+      }
+      return beli;
+    }
+
+    //Pengurangan
+    function selisih() {
+      let kurang = [];
+      for (let i = 0; i < product.length; i++) {
+        kurang.push(sisa[i].stock - qty[i]);
+      }
+
+      return kurang;
+    }
+    function Pembayaran () {
+
+      let bayar;
+      while (true) {
+        let totalBeli = HargaBeli();
+        let totalHarga = totalBeli.reduce((a, b) => a + b);
+        bayar = parseInt(prompt(`Silahkan masukkan nominal pembayaran`));
+        if (bayar < totalHarga) {
+          alert(
+            `Maaf pembayaran anda kurang,
+             Total pembelian = Rp. ${totalHarga.toLocaleString()}
+             Pembayaran      = Rp. ${bayar}
+             Kurang bayar    = Rp. ${totalHarga - bayar}`
+          );
+        } else if (isNaN(bayar) || bayar < 0) {
+          alert("Salah input");
+        } else {
+          alert(`
+          Pembayaran berhasil
+          
+          Kembalian  Anda       = Rp. ${bayar - totalHarga}
+
+          `);
+          break;
+        }
+      }
+
+      // pengurangan apple
+      let kurang = selisih();
+      for (let i = 0; i < kurang.length; i++) {
+        product[i].stock = kurang[i];
+      }
+
+      
+    }
+    
+    while (true) {
+      alert(`Apa yang ingin anda lakukan?
+      1. Tambah produk
+      2. Tampilkan daftar produk
+      3. Ingin membeli produk
+      
+      `)
+
+      isi()
+      
+      function isi () {
+        
+        let daftarIsi = prompt("Masukkan angka")
+  
+        if(daftarIsi == 1) {
+          nambahProduct()
+          } else if (daftarIsi == 2) {
+            showProduct()
+          } else if (daftarIsi == 3) {
+            input(), showDetail(), Pembayaran()
+          } 
+        }
+        
+        
+        //Konfirmasi
+        let confirmation = confirm("Apakah ingin lakukan yang lain ?");
+        
+        if (confirmation == false) {
+          alert("Terima kasih sudah berkunjung 🙏");
+          break
+        }
+        
+      }
+  </script>
+</html>

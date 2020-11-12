@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Count Down</title>
+  </head>
+  <body>
+    <form>
+      <label for="num">Masukkan angka</label>
+      <input type="number" name="num" placeholder="Angka" id="input" />
+    </form>
+    <button onclick="interval()" id="btn">START</button>
+    <div id="interval"></div>
+  </body>
+  <script>
+    let input = document.getElementById("input");
+    
+    let div = document.getElementById("interval");
+    console.log(div);
+    
+    function interval() {
+       cleari = setInterval(myInterval, 1000);
+    }
+    let value = input.value
+
+    console.log(value)
+    function myInterval() {
+        console.log(value)
+      if (value > 0) {
+        value--;
+        div.innerHTML = `<h1> ${value} </h1>`;
+      } else {
+        clearInterval(cleari);
+      }
+      
+    }
+
+    
+  </script>
+</html>

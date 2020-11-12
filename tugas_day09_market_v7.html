@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tugas Market v.1</title>
+  </head>
+  <body></body>
+  <script>
+    class Dagangan {
+      constructor(nama, harga, stock) {
+        (this.nama = nama), (this.harga = harga), (this.stock = stock);
+      }
+    }
+
+    let product = [
+      { nama: "Apel 🍎", harga: 10000, stock: 30 },
+      { nama: "Jeruk 🍊", harga: 20000, stock: 30 },
+      { nama: "Anggur 🍇", harga: 30000, stock: 30 },
+    ];
+
+    class Products {
+      constructor(nama, harga, stock) {
+        (this.nama = nama), (this.harga = harga), (this.stock = stock);
+      }
+    }
+
+    let sisa = product;
+    function showProduct() {
+      let menu = "Selamat datang di toko KAMI 🏠 \n";
+      for (let i = 0; i < product.length; i++) {
+        menu += `${i + 1}. ${product[i].nama} Rp. ${
+          product[i].harga
+        },00 /kg tersedia ${sisa[i].stock} buah \n`;
+      }
+      alert(menu);
+    }
+
+    let qty = [];
+    function input() {
+      for (let i = 0; i < product.length; i++) {
+        while (true) {
+          qty[i] = parseInt(
+            prompt(`Masukkan ${product[i].nama} yang ingin di beli`)
+          );
+          if (qty[i] > product[i].stock) {
+            alert("Jumlah anda melebihi stock yang tersedia");
+          } else if (isNaN(qty[i])) {
+            alert("Salah input");
+          } else {
+            break;
+          }
+        }
+      }
+    }
+
+    function showDetail() {
+      //harga beli product
+      let totalBeli = HargaBeli();
+
+      let detail = "Detail pembelian barang anda \n";
+      for (let i = 0; i < product.length; i++) {
+        detail += `${i + 1}. Harga total ${product[i].nama} ${qty[i]} x ${
+          product[i].harga
+        } = ${totalBeli[i]} \n`;
+      }
+      alert(
+        detail +
+          `Harga total pembelian = Rp. ${totalBeli.reduce((a, b) => a + b)},00`
+      );
+    }
+
+    function HargaBeli() {
+      let beli = [];
+      for (let i = 0; i < product.length; i++) {
+        beli.push(product[i].harga * qty[i]);
+      }
+      return beli;
+    }
+
+    //Pengurangan
+    function selisih() {
+      let kurang = [];
+      for (let i = 0; i < product.length; i++) {
+        kurang.push(sisa[i].stock - qty[i]);
+      }
+
+      return kurang;
+    }
+
+    let home = `Apa yang ingin anda lakukan?
+    1. Tambah produk
+    2. Tampilkan daftar produk
+    3. Merubah produk
+    4. Ingin membeli produk 
+    5. exit
+    `;
+
+    home: while (true) {
+      let daftarIsi = parseInt(prompt(home));
+      let nama = [];
+      let harga = [];
+      let stock = [];
+      if (daftarIsi == 1) {
+        nama: while (true) {
+          nama = prompt("Masukkan nama produk baru");
+          if (nama <= 0) {
+            alert(`Salah input`);
+          } else {
+            break nama;
+          }
+        }
+        harga: while (true) {
+          harga = parseInt(prompt("Masukkan harga"));
+          if (isNaN(harga) || harga <= 0) {
+            alert(`Salah input`);
+          } else {
+            break harga;
+          }
+        }
+        stock: while (true) {
+          stock = parseInt(prompt("Masukkan jumlah barang"));
+          if (isNaN(stock) || stock <= 0) {
+            alert(`Salah input`);
+          } else {
+            break stock;
+          }
+        }
+
+        let konfirmasi = confirm(
+          `Apakah anda ingin menambahkan ${nama} dengan harga ${harga},00 /kg dalam jumlah ${stock} buah ? `
+        );
+        if (konfirmasi == true) {
+          product.push(new Products(nama, harga, stock));
+        }
+      } else if (isNaN(daftarIsi)) {
+        alert("✖ Salah input");
+      } else if (daftarIsi == 2) {
+        showProduct();
+      } else if (daftarIsi == 3) {
+        let pesan = "Produk apa yang ingin di ubah? \n";
+        for (let i = 0; i < product.length; i++) {
+          pesan += `${i + 1}. ${product[i].nama} Rp. ${
+            product[i].harga
+          },00 /kg tersedia ${sisa[i].stock} buah \n`;
+        }
+        let ubah = parseInt(prompt(pesan));
+        if(isNaN(ubah) || ubah <= 0 || ubah > product.length) {
+          alert("Salah input")
+        }
+        
+        let ubahNama = prompt("Masukkan nama produk yang baru :", product[ubah - 1].nama)
+        let ubahHarga = prompt("Masukkan nama produk yang baru :", product[ubah - 1].harga)
+        let ubahStock = prompt("Masukkan nama produk yang baru :", product[ubah - 1].stock)
+
+        product[ubah-1].nama = ubahNama
+        product[ubah-1].harga = ubahHarga
+        product[ubah-1].stock = ubahStock
+
+        alert("Perubahan data sukses")
+
+      } else if (daftarIsi == 4) {
+        main: while (true) {
+          showProduct();
+          input();
+          showDetail();
+
+          let bayar;
+          while (true) {
+            let totalBeli = HargaBeli();
+            let totalHarga = totalBeli.reduce((a, b) => a + b);
+            bayar = parseInt(prompt(`Silahkan masukkan nominal pembayaran`));
+            if (bayar < totalHarga) {
+              alert(
+                `Maaf pembayaran anda kurang,
+                Total pembelian = Rp. ${totalHarga.toLocaleString()}
+                Pembayaran      = Rp. ${bayar}
+                Kurang bayar    = Rp. ${totalHarga - bayar}`
+              );
+            } else if (isNaN(bayar) || bayar < 0) {
+              alert("Salah input");
+            } else {
+              alert(`
+              Pembayaran berhasil
+              
+              Kembalian  Anda       = Rp. ${bayar - totalHarga}
+              
+              `);
+              break;
+            }
+          }
+
+          // pengurangan apple
+          let kurang = selisih();
+          for (let i = 0; i < kurang.length; i++) {
+            product[i].stock = kurang[i];
+          }
+
+          let confirmation = confirm("Apakah ingin berbelanja lagi?");
+
+          //Konfirmasi
+          if (confirmation == false) {
+            alert("Terima kasih sudah berkunjung 🙏");
+          }
+          break home;
+        }
+      } else if (daftasIsi == 5) {
+        break home;
+      }
+    }
+  </script>
+</html>

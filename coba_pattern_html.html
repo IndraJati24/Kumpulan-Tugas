@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pattern HTML</title>
+    <style>
+        #rotate
+            {
+            transform:rotate(180deg);
+        }
+
+        
+    </style>
+  </head>
+  <body>
+      <form>
+          <button onclick="OnButton(event)">SEGITIGA SIKU</button>
+          <button onclick="OnButtonRotate(event)">Rotate</button>
+      </form>
+      <div id="container"></div>
+  </body>
+  <script>
+    // let button = document.getElementById("siku")
+    // console.log("button")
+
+    function OnButton(event) {
+      console.log("sudah klik");
+      event.preventDefault();
+    
+      let div = document.getElementById("container")
+      let n =5
+      let pattern=""
+      for(let i = 0; i < n; i++) {
+          for(let j = 0; j<=i; j++){
+              pattern += "   *" 
+          }
+          pattern += "<br>"
+      }
+      div.innerHTML = `<h2>${pattern}</h2>`
+    }
+
+    function OnButtonRotate(event){
+
+        let div = document.getElementById("container")
+
+        div.style.transform = "rotate(-90deg)"
+        
+        event.preventDefault()
+
+    }
+  </script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas musim</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let bulan = parseInt(prompt("Masukkan nomor bulan"))
+    if (isNaN(bulan) || bulan <0) {
+        alert(`Angka tidak terdaftar`)
+    } else if (bulan >=3 && bulan <= 5) {
+        alert(`Sekarang musim semi`)
+    } else if(bulan >= 6 && bulan <= 8) {
+        alert(`Sekarang musin panas`)
+    } else if(bulan>=9 && bulan<=11) {
+        alert(`Sekarang musim gugur`) 
+    } else if(bulan > 12) {
+        alert(`Angka tidak terdaftar`)
+    }
+
+</script>
+</html>
