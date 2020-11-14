@@ -7,29 +7,54 @@
   </head>
   <body>
     <div id="pattern"></div>
+    <div id="pattern1"></div>
   </body>
   <script>
     let div = document.getElementById("pattern");
     console.log(div);
-    
+
     let n = 4;
     let pattern = "";
-    let output = "&nbsp"
-    
+    let output = "&nbsp";
+
     for (let i = 0; i <= n; i++) {
-      for (let j =4; j > i; j--){
-        pattern += output + "&nbsp&nbsp"
+      for (let j = 4; j > i; j--) {
+        pattern += output + "&nbsp&nbsp";
       }
-      for(let k = i; k >= 0; k--){
-        pattern += k + "&nbsp"
+      for (let k = i; k >= 0; k--) {
+        pattern += k + "&nbsp";
       }
-      for(let l = 1; l<= i; l++){
-        pattern += l + "&nbsp"
+      for (let l = 1; l <= i; l++) {
+        pattern += l + "&nbsp";
       }
-      pattern += "<br>"
+      pattern += "<br>";
     }
-        
-        
-    div.innerHTML = `<h1>${pattern}</h1>`;
+
+    div.innerHTML += `<h1>${pattern}</h1>`;
+
+    let div2 = document.getElementById("pattern1");
+    console.log(div2);
+
+    let t = 5;
+    let hasil = "";
+
+    for (let i = 0; i <= t; i++) {
+      let temp = 2;
+      for (j = 0; j < t + i + 1; j++) {
+        if (j < t - i) {
+          hasil += "&nbsp&nbsp&nbsp&nbsp";
+        } else if (j === t) {
+          hasil += 0 + "&nbsp&nbsp";
+        } else if (j > t) {
+          hasil += j + 1 - temp + "&nbsp&nbsp";
+          temp += 2;
+        } else {
+          hasil += j + 1 + "&nbsp&nbsp";
+        }
+      }
+      hasil += "<br>";
+    }
+
+    div.innerHTML += `<h1>${hasil}</h1`;
   </script>
 </html>
