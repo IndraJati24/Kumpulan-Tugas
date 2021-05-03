@@ -1,5 +1,5 @@
 // TUGAS #1
-let input = "hello dunia";
+let input = "hello duniia";
 let arrInput = input.split("");
 let output = [];
 console.log(arrInput);
@@ -17,6 +17,25 @@ for (let i = 0; i < input.length; i++) {
 
 console.log(output.join(""));
 
+let hasilHitung = ""
+let hitung = 0
+let compare = []
+for(let i = 0; i < output.length; i++) {
+  if(!compare.includes(output[i])) {
+    for(let j = 0; j < output.length; j++) {
+      if(output.indexOf(output[j]) === i) {
+        hitung += 1
+      }
+    }
+  
+    hasilHitung += output[i] + ' sebanyak' + ` ${hitung}` + ' buah' + "\n"
+    compare.push(output[i]) 
+    hitung = 0
+  }
+}
+
+console.log(hasilHitung)
+console.log(compare)
 // TUGAS #2
 let input1 = "javascript";
 let arrInput1 = input1.split("");
